@@ -1,0 +1,24 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath libs.build.gradle // 你的 Android Gradle Plugin 版本
+        classpath 'com.chaoxing.transformer.timecost:com.chaoxing.transformer.timecost.gradle.plugin:1.0.3-SNAPSHOT'
+        classpath 'com.chaoxing.transformer.replace:com.chaoxing.transformer.replace.gradle.plugin:1.0.3-SNAPSHOT'
+    }
+}
+
+
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+//    alias(libs.plugins.jetbrains.kotlin.android) apply false
+
+}

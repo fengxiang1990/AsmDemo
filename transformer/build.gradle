@@ -1,0 +1,84 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+    id 'groovy'
+    id 'com.gradle.plugin-publish' version '0.18.0'
+}
+
+ext {
+    plugin_version = '1.0.3-SNAPSHOT'
+    projectUrl = "https://gitlab.chaoxing.com/fengxiang/asmdemo"
+    repositoryUrl = 'http://118.186.60.34:8081/repository/android-release/'
+    rusername = 'android'
+    rpassword = '_android'
+}
+
+group = 'com.chaoxing.transformer'   // 重要！group要和插件包路径一致
+version = plugin_version
+
+dependencies {
+    implementation 'org.ow2.asm:asm:9.1'
+    implementation 'org.ow2.asm:asm-commons:9.1'
+    implementation 'org.ow2.asm:asm-util:9.1'
+    implementation 'com.android.tools.build:gradle:7.4.2'
+}
+
+gradlePlugin {
+    plugins {
+        methodTimer {
+            id = 'com.chaoxing.transformer.timecost'
+            implementationClass = 'com.chaoxing.transformer.MethodTimerPlugin'
+            displayName = 'Method Timer Plugin'
+            description = 'A plugin for method time analysis'
+        }
+
+        methodReplace {
+            id = 'com.chaoxing.transformer.replace'
+            implementationClass = 'com.chaoxing.transformer.MethodReplacePlugin'
+            displayName = 'Method Replace Plugin'
+            description = 'A plugin for method replace'
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId = 'com.chaoxing.transformer'       // 保持一致
+            artifactId = 'transformer'   // 重要，防止找不到
+            version = '1.0.3-SNAPSHOT'
+        }
+    }
+    repositories {
+        mavenLocal()   // 本地优先
+        maven {
+            url = uri(repositoryUrl)
+            credentials {
+                username = rusername
+                password = rpassword
+            }
+            allowInsecureProtocol = true
+        }
+    }
+}
+
+pluginBundle {
+    website = projectUrl
+    vcsUrl = projectUrl
+    tags = ['plugin', 'transformer']
+
+    plugins {
+        methodTimer {
+            id = 'com.chaoxing.transformer.timecost'   // 对齐
+            displayName = 'Method Timer Plugin'
+            description = 'A plugin for method time analysis'
+        }
+
+        methodReplace {
+            id = 'com.chaoxing.transformer.replace'    // 对齐
+            displayName = 'Method Replace Plugin'
+            description = 'A plugin for method replace'
+        }
+    }
+}
