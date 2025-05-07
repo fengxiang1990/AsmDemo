@@ -1,9 +1,9 @@
-package com.chaoxing.transformer;
+package com.fxa.transformer;
 
-import com.chaoxing.transformer.replace.FindReplaceRuleUtil;
-import com.chaoxing.transformer.replace.MethodReplaceRuleProcessor;
-import com.chaoxing.transformer.replace.MethodReplaceTransformer;
-import com.chaoxing.transformer.replace.MethodReplaceInfo;
+import com.fxa.transformer.replace.FindReplaceRuleUtil;
+import com.fxa.transformer.replace.MethodReplaceRuleProcessor;
+import com.fxa.transformer.replace.MethodReplaceTransformer;
+import com.fxa.transformer.replace.MethodReplaceInfo;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import com.android.build.gradle.AppExtension;
@@ -13,7 +13,6 @@ import com.android.build.gradle.api.LibraryVariant;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.util.CheckClassAdapter;
 import org.objectweb.asm.util.TraceClassVisitor;
 import java.io.File;
 import java.io.IOException;

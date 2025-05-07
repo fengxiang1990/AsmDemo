@@ -10,8 +10,8 @@ buildscript {
     }
     dependencies {
         classpath libs.build.gradle // 你的 Android Gradle Plugin 版本
-        classpath 'com.chaoxing.transformer.timecost:com.chaoxing.transformer.timecost.gradle.plugin:1.0.4-SNAPSHOT'
-        classpath 'com.chaoxing.transformer.replace:com.chaoxing.transformer.replace.gradle.plugin:1.0.4-SNAPSHOT'
+        classpath 'com.fxa.transformer.timecost:com.fxa.transformer.timecost.gradle.plugin:1.0.4-SNAPSHOT'
+        classpath 'com.fxa.transformer.replace:com.fxa.transformer.replace.gradle.plugin:1.0.4-SNAPSHOT'
     }
 }
 

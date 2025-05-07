@@ -1,18 +1,16 @@
-package com.chaoxing.transformer;
+package com.fxa.transformer;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
-import org.gradle.api.plugins.ExtensionContainer;
 
-import com.android.build.api.variant.Variant;
 import com.android.build.gradle.AppExtension;
 import com.android.build.gradle.LibraryExtension;
 import com.android.build.gradle.api.ApplicationVariant;
 import com.android.build.gradle.api.LibraryVariant;
+import com.fxa.transformer.timercost.MethodTimerTransformer;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MethodTimerPlugin implements Plugin<Project> {

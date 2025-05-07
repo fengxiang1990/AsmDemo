@@ -1,12 +1,43 @@
-修改字节码,插入耗时统计代码来分析函数耗时
+classpath 'com.fxa.transformer.timecost:com.fxa.transformer.timecost.gradle.plugin:1.0.4-SNAPSHOT'
+classpath 'com.fxa.transformer.replace:com.fxa.transformer.replace.gradle.plugin:1.0.4-SNAPSHOT'
 
+使用方式:
+先把transformer 库发布到本地maven仓库
+
+方法替换插件
+id 'com.fxa.transformer.replace' apply true
+
+1.配置替换规则
+method_replace_rules.json 位于项目根目录
+
+{
+"targetClass": "com/example/asmdemo/TestUtils",
+"targetMethod": "getFun",
+"targetParameterTypes": ["java/lang/String", "java/lang/String", "java/lang/Long"],
+"methodType": "static",
+"replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.fun",
+"returnType": "Ljava/lang/String"
+}
+规则解释
+com/example/asmdemo/TestUtils的getFun(String s1,String s2) 替换为com/chaoxing/transformer/MethodReplaceUtil.fun 方法
+
+说明 
+1.类路径必须/ 
+2.必须指定方法参数类型和返回类型，返回类型目标和被替换的必须一致
+3.根据JAVA规范，参数描述符基本类型不需要加L 其他类型需要加L
+
+运行效果
+![img.png](img.png)
+
+
+修改字节码,插入耗时统计代码来分析函数耗时
+id 'com.fxa.transformer.timecost' apply true
 使用方式:
 1.本地先找到transformer的gradle 执行publishToMavenLocal任务
 2.添加插件的classpath 依赖       
 一般是项目根目录的build.gradle
-classpath 'com.chaoxing.transformer:com.chaoxing.transformer.gradle.plugin:1.0'
 3.在需要使用的模块的build.gradle添加插件和配置
-id 'com.chaoxing.transformer'
+id 'com.fxa.transformer.timecost' apply true
 
 methodTimerConfig {
     classesToTransform = [

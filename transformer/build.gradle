@@ -13,7 +13,7 @@ ext {
     rpassword = '_android'
 }
 
-group = 'com.chaoxing.transformer'   // 重要！group要和插件包路径一致
+group = 'com.fxa.transformer'   // 重要！group要和插件包路径一致
 version = plugin_version
 
 dependencies {
@@ -27,15 +27,15 @@ dependencies {
 gradlePlugin {
     plugins {
         methodTimer {
-            id = 'com.chaoxing.transformer.timecost'
-            implementationClass = 'com.chaoxing.transformer.MethodTimerPlugin'
+            id = 'com.fxa.transformer.timecost'
+            implementationClass = 'com.fxa.transformer.MethodTimerPlugin'
             displayName = 'Method Timer Plugin'
             description = 'A plugin for method time analysis'
         }
 
         methodReplace {
-            id = 'com.chaoxing.transformer.replace'
-            implementationClass = 'com.chaoxing.transformer.MethodReplacePlugin'
+            id = 'com.fxa.transformer.replace'
+            implementationClass = 'com.fxa.transformer.MethodReplacePlugin'
             displayName = 'Method Replace Plugin'
             description = 'A plugin for method replace'
         }
@@ -46,7 +46,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-            groupId = 'com.chaoxing.transformer'       // 保持一致
+            groupId = 'com.fxa.transformer'       // 保持一致
             artifactId = 'transformer'   // 重要，防止找不到
             version = '1.0.4-SNAPSHOT'
         }
@@ -71,13 +71,13 @@ pluginBundle {
 
     plugins {
         methodTimer {
-            id = 'com.chaoxing.transformer.timecost'   // 对齐
+            id = 'com.fxa.transformer.timecost'   // 对齐
             displayName = 'Method Timer Plugin'
             description = 'A plugin for method time analysis'
         }
 
         methodReplace {
-            id = 'com.chaoxing.transformer.replace'    // 对齐
+            id = 'com.fxa.transformer.replace'    // 对齐
             displayName = 'Method Replace Plugin'
             description = 'A plugin for method replace'
         }
