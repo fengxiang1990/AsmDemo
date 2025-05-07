@@ -14,7 +14,7 @@ methodTimerConfig {
 
 android {
     namespace 'com.example.testlibrary'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         minSdk 24
@@ -36,10 +36,6 @@ android {
 }
 
 dependencies {
-
     implementation libs.androidx.appcompat
     implementation libs.material
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.junit
-    androidTestImplementation libs.androidx.espresso.core
 }

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.example.testlibrary.LibraryTestUtil;
+
 import java.util.Locale;
 
 /**
@@ -32,6 +34,8 @@ public class TestUtils {
             String s2 = TestUtils.getFun("hello","world",10000L);
             Log.e("fxa","s1->"+s1);
             Log.e("fxa","s2->"+s2);
+
+            LibraryTestUtil.showNotification(context,"hahaha","收到一条消息");
         } catch (InterruptedException e) {
 
         }

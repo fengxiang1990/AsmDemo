@@ -1,14 +1,14 @@
 [versions]
-agp = "8.4.1"
+agp = "8.5.0"
 android = "30.0.0"
-comChaoxingTransformerGradlePlugin = "1.0.3-SNAPSHOT"
-gradleVersion = "7.4.2"
+comChaoxingTransformerGradlePlugin = "1.0.4-SNAPSHOT"
+gradleVersion = "8.7.0"
 kotlin = "1.9.22"
 coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.6.1"
+lifecycleRuntimeKtx = "2.6.2"
 activityCompose = "1.8.0"
 composeBom = "2023.08.00"
 

@@ -1,0 +1,58 @@
+[
+  {
+    "targetClass": "android/provider/Settings$Secure",
+    "targetMethod": "getString",
+    "targetParameterTypes": ["android/content/ContentResolver", "java/lang/String"],
+    "methodType": "static",
+    "replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.getString",
+    "returnType": "Ljava/lang/String"
+  },
+  {
+    "targetClass": "android/app/NotificationManager",
+    "targetMethod": "createNotificationChannel",
+    "targetParameterTypes": ["android/app/NotificationChannel"],
+    "methodType": "virtual",
+    "replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.createNotificationChannel",
+    "returnType": "void"
+  },
+  {
+    "targetClass": "androidx/core/app/NotificationCompat$Builder",
+    "targetMethod": "setGroup",
+    "targetParameterTypes": ["java/lang/String"],
+    "methodType": "virtual",
+    "replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.setGroup",
+    "returnType": "Landroidx/core/app/NotificationCompat$Builder"
+  },
+  {
+    "targetClass": "com/example/asmdemo/TestUtils",
+    "targetMethod": "getFun",
+    "targetParameterTypes": ["java/lang/String", "java/lang/String"],
+    "methodType": "static",
+    "replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.fun",
+    "returnType": "Ljava/lang/String"
+  },
+  {
+    "targetClass": "com/example/asmdemo/TestUtils",
+    "targetMethod": "getFun",
+    "targetParameterTypes": ["java/lang/String", "java/lang/String", "java/lang/Long"],
+    "methodType": "static",
+    "replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.fun",
+    "returnType": "Ljava/lang/String"
+  },
+  {
+    "targetClass": "java/lang/String",
+    "targetMethod": "toUpperCase",
+    "targetParameterTypes": [],
+    "methodType": "virtual",
+    "replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.toUpperCase1",
+    "returnType": "Ljava/lang/String"
+  },
+  {
+    "targetClass": "java/lang/String",
+    "targetMethod": "toUpperCase",
+    "targetParameterTypes": ["java/util/Locale"],
+    "methodType": "virtual",
+    "replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.toUpperCase2",
+    "returnType": "Ljava/lang/String"
+  }
+]

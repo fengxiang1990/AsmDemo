@@ -31,11 +31,26 @@ public class MethodReplaceMethodVisitor extends MethodVisitor {
             return;
         }
 
+
+        if(className.equals("com/example/testlibrary/LibraryTestUtil")){
+            System.out.println("methodReplaceMap LibraryTestUtil->"+methodReplaceMap.size()+" methodReplaceMap:"+methodReplaceMap.hashCode());
+            for(String key : this.methodReplaceMap.keySet()){
+                System.out.println("LibraryTestUtil MethodReplaceMethodVisitor fxa key:"+key+" info:"+methodReplaceMap.get(key));
+            }
+            String key1 = "androidx/core/app/NotificationCompat$Builder.setGroup(Ljava/lang/String;)Landroidx/core/app/NotificationCompat$Builder;";
+            MethodReplaceInfo info1 = methodReplaceMap.get(key1);
+            System.out.println("fxa info1->"+info1 +" key:"+key1);
+        }else{
+            System.out.println("methodReplaceMap other->"+methodReplaceMap.size()+" methodReplaceMap:"+methodReplaceMap.hashCode());
+        }
+
         // 按原始 descriptor 去 lookup
         String key = owner + "." + name + descriptor;
         MethodReplaceInfo info = methodReplaceMap.get(key);
         System.out.println("fxa key->"+key +" info:"+info);
+        System.out.println("fxa class name->"+className +" owner:"+owner+" method:"+name+" descriptor:"+descriptor);
         if (info != null) {
+            System.out.println("fxa Replacing->"+className);
             System.out.println("Replacing call " + key
                 + " in " + className + " -> "
                 + info.targetClass + "." + info.targetMethod

@@ -23,7 +23,7 @@ class MainActivity : Activity() {
         Log.e("fxa","android id->"+id)
         TestUtils().test1(this)
         TestUtils().test2()
-        LibraryTestUtil.test()
+        LibraryTestUtil.test(this)
         showNotificationPerm(this)
     }
 
@@ -79,6 +79,7 @@ class MainActivity : Activity() {
             .setSmallIcon(android.R.drawable.ic_dialog_info)
             .setContentTitle(title)
             .setContentText(content)
+            .setGroup("1111")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         with(NotificationManagerCompat.from(context)) {
