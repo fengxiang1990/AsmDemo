@@ -17,6 +17,15 @@ import java.util.Locale;
  */
 public class MethodReplaceUtil{
 
+    public static int compareTo(Integer a,Integer b){
+        Log.e("fxa","MethodReplaceUtil compareTo:"+a+" "+b);
+        return a.compareTo(b) * 1 * 100;
+    }
+
+    public static String concat(String a,String b){
+        Log.e("fxa","MethodReplaceUtil concat:"+a+" "+b);
+        return a.concat(b).concat("_replaced");
+    }
 
     public static String getString(ContentResolver resolver, String name) throws IOException {
         String id = "11111";

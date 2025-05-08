@@ -22,6 +22,7 @@
         <option value="com.chaoxing.transformer" />
         <option value="com.example.asmdemo" />
         <option value="com.example.testlibrary" />
+        <option value="com.fxa.testlib" />
         <option value="com.fxa.transformer" />
         <option value="com.yourcompany.methodreplaceplugin" />
       </set>

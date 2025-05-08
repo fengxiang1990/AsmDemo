@@ -10,6 +10,8 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.fxa.testlib.MyClass;
+
 import java.util.Locale;
 
 /**
@@ -58,6 +60,14 @@ public class LibraryTestUtil {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        Log.d("LibraryTestUtil","LibraryTestUtil test");
+        Log.d("fxa","LibraryTestUtil test");
+
+        MyClass myClass = new MyClass();
+        int compareTo = myClass.compareTo(10,2);
+        boolean equals = myClass.equals(10,10);
+        String concat = myClass.concat("hello","world");
+        Log.d("fxa","LibraryTestUtil jar compareTo:"+compareTo);
+        Log.d("fxa","LibraryTestUtil jar equals:"+equals);
+        Log.d("fxa","LibraryTestUtil jar concat:"+concat);
     }
 }

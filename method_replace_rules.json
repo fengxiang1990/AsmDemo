@@ -1,5 +1,21 @@
 [
   {
+    "targetClass": "java/lang/Integer",
+    "targetMethod": "compareTo",
+    "targetParameterTypes": ["java/lang/Integer"],
+    "methodType": "virtual",
+    "replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.compareTo",
+    "returnType": "int"
+  },
+  {
+    "targetClass": "java/lang/String",
+    "targetMethod": "concat",
+    "targetParameterTypes": ["java/lang/String"],
+    "methodType": "virtual",
+    "replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.concat",
+    "returnType": "Ljava/lang/String"
+  },
+  {
     "targetClass": "android/provider/Settings$Secure",
     "targetMethod": "getString",
     "targetParameterTypes": ["android/content/ContentResolver", "java/lang/String"],
