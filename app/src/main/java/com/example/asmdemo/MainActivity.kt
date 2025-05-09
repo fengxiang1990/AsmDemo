@@ -5,26 +5,71 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable.Orientation
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.Gravity
+import android.view.KeyEvent
+import android.view.View
+import android.view.View.OnClickListener
+import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import com.chaoxing.transformer.ThreadStackUtil
 import com.example.testlibrary.LibraryTestUtil
 
 
 class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val rootView = LinearLayout(this)
+        rootView.orientation = LinearLayout.VERTICAL
+        setContentView(rootView)
+
+        val btn1 = Button(this)
+        btn1.text = "click me"
+        rootView.addView(btn1)
+
+        val text1 = TextView(this)
+        text1.text = "click me text"
+        text1.height = 120
+        text1.setBackgroundColor(Color.parseColor("#999999"))
+        val lp = LinearLayout.LayoutParams(-1,-2)
+        lp.gravity = Gravity.CENTER
+        rootView.addView(text1,lp)
+
+        val image1 = ImageView(this)
+        val image1_lp = LinearLayout.LayoutParams(120,120)
+        image1.setImageResource(R.drawable.ic_launcher_background)
+        rootView.addView(image1,image1_lp)
+
+
         var id = Settings.Secure.getString(contentResolver,"android_id")
         Log.e("fxa","android id->"+id)
         TestUtils().test1(this)
         TestUtils().test2()
         LibraryTestUtil.test(this)
         showNotificationPerm(this)
+
+        text1.setOnClickListener {
+            Log.e("fxa", "text1 clicked") }
+
+        btn1.setOnClickListener {
+            Log.e("fxa","btn1 clicked lambda")
+        }
+
+        image1.setOnClickListener {
+            Log.e("fxa","image1 clicked lambda")
+        }
     }
 
     override fun onRequestPermissionsResult(

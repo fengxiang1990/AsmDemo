@@ -5,6 +5,10 @@ import android.app.NotificationManager;
 import android.content.ContentResolver;
 import android.os.Build;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.core.app.NotificationCompat;
 
@@ -16,6 +20,46 @@ import java.util.Locale;
  * 方法替换
  */
 public class MethodReplaceUtil{
+
+    public static void setOnClickListener(ImageView view, View.OnClickListener listener){
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ThreadStackUtil.dumpCurrentThreadStackTrace("fxa MethodReplaceUtil ImageView.onClick");
+                listener.onClick(view);
+            }
+        });
+    }
+
+    public static void setOnClickListener(Button view, View.OnClickListener listener){
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ThreadStackUtil.dumpCurrentThreadStackTrace("fxa MethodReplaceUtil Button.onClick");
+                listener.onClick(view);
+            }
+        });
+    }
+
+    public static void setOnClickListener(TextView view, View.OnClickListener listener){
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ThreadStackUtil.dumpCurrentThreadStackTrace("fxa MethodReplaceUtil TextView.onClick");
+                listener.onClick(view);
+            }
+        });
+    }
+
+    public static void setOnClickListener(View view,View.OnClickListener listener){
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ThreadStackUtil.dumpCurrentThreadStackTrace("fxa MethodReplaceUtil View.onClick");
+                listener.onClick(view);
+            }
+        });
+    }
 
     public static int compareTo(Integer a,Integer b){
         Log.e("fxa","MethodReplaceUtil compareTo:"+a+" "+b);

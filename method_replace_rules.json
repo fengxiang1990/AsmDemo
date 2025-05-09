@@ -1,5 +1,37 @@
 [
   {
+    "targetClass": "android/widget/ImageView",
+    "targetMethod": "setOnClickListener",
+    "targetParameterTypes": ["android/view/View$OnClickListener"],
+    "methodType": "virtual",
+    "replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.setOnClickListener",
+    "returnType": "void"
+  },
+  {
+    "targetClass": "android/widget/Button",
+    "targetMethod": "setOnClickListener",
+    "targetParameterTypes": ["android/view/View$OnClickListener"],
+    "methodType": "virtual",
+    "replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.setOnClickListener",
+    "returnType": "void"
+  },
+  {
+    "targetClass": "android/widget/TextView",
+    "targetMethod": "setOnClickListener",
+    "targetParameterTypes": ["android/view/View$OnClickListener"],
+    "methodType": "virtual",
+    "replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.setOnClickListener",
+    "returnType": "void"
+  },
+  {
+    "targetClass": "android/view/View",
+    "targetMethod": "setOnClickListener",
+    "targetParameterTypes": ["android/view/View$OnClickListener"],
+    "methodType": "virtual",
+    "replacementMethod": "com/chaoxing/transformer/MethodReplaceUtil.setOnClickListener",
+    "returnType": "void"
+  },
+  {
     "targetClass": "java/lang/Integer",
     "targetMethod": "compareTo",
     "targetParameterTypes": ["java/lang/Integer"],

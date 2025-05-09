@@ -45,6 +45,7 @@ public class MethodReplacePlugin implements Plugin<Project> {
     public void apply(Project project) {
         System.out.println("MethodReplacePlugin start thread->"+Thread.currentThread().getName()+" "+Thread.currentThread().getId());
         this.methodReplaceMap = FindReplaceRuleUtil.getInstance().getMethodReplaceMap();
+        this.methodReplaceMap.clear();
         new MethodReplaceRuleProcessor(this.methodReplaceMap).process();
         project.afterEvaluate(proj -> {
             System.out.println("MethodReplacePlugin proj->"+proj);
