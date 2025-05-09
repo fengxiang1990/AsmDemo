@@ -179,14 +179,21 @@ public class MethodReplacePlugin implements Plugin<Project> {
                         if (name.endsWith(".class")) {
                             // 1) 使用 ASM 对 .class 文件进行修改
                             byte[] origClassBytes = is.readAllBytes();
-                            byte[] newClassBytes = transformClass(origClassBytes, methodReplaceMap);
-
-                            // 2) 写入修改后的字节码
-                            JarEntry newEntry = new JarEntry(name);
-                            newEntry.setTime(entry.getTime());
-                            jos.putNextEntry(newEntry);
-                            jos.write(newClassBytes);
-                            jos.closeEntry();
+                            try {
+                                byte[] newClassBytes = transformClass(origClassBytes, methodReplaceMap);
+                                // 2) 写入修改后的字节码
+                                JarEntry newEntry = new JarEntry(name);
+                                newEntry.setTime(entry.getTime());
+                                jos.putNextEntry(newEntry);
+                                jos.write(newClassBytes);
+                                jos.closeEntry();
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                //delete tmp
+                                if(tempJar != null){
+                                    tempJar.delete();
+                                }
+                            }
                         } else {
                             // 3) 复制其它资源文件（例如图片、配置等）
                             JarEntry resourceEntry = new JarEntry(name);
@@ -219,14 +226,18 @@ public class MethodReplacePlugin implements Plugin<Project> {
     }
 
     private byte[] transformClass(byte[] classBytes, Map<String, MethodReplaceInfo> methodReplaceMap) {
-        ClassReader classReader = new ClassReader(classBytes);
-        // 使用 COMPUTE_FRAMES/COMPUTE_MAXS 标志自动计算栈帧和栈大小
-        ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
-        // MethodReplaceTransformer 是自定义的 ASM ClassVisitor，用于替换方法（已实现具体逻辑）
-        MethodReplaceTransformer transformer = new MethodReplaceTransformer(classWriter, methodReplaceMap);
-        // 触发访问：EXPAND_FRAMES 让 ASM 转换所有 GOTO/WIDE 等指令为通用形式
-        classReader.accept(transformer, ClassReader.EXPAND_FRAMES);
-        return classWriter.toByteArray();
+        try {
+            ClassReader classReader = new ClassReader(classBytes);
+            // 使用 COMPUTE_FRAMES/COMPUTE_MAXS 标志自动计算栈帧和栈大小
+            ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
+            // MethodReplaceTransformer 是自定义的 ASM ClassVisitor，用于替换方法（已实现具体逻辑）
+            MethodReplaceTransformer transformer = new MethodReplaceTransformer(classWriter, methodReplaceMap);
+            // 触发访问：EXPAND_FRAMES 让 ASM 转换所有 GOTO/WIDE 等指令为通用形式
+            classReader.accept(transformer, ClassReader.EXPAND_FRAMES);
+            return classWriter.toByteArray();
+        }catch (Exception e){
+           throw new IllegalArgumentException("fxa transformClass err",e);
+        }
     }
 
 
